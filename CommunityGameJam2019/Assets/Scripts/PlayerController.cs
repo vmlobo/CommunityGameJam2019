@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            toggleFlashlight = !toggleFlashlight;
+            toggleFlashlight = !toggleFlashlight; //TODO make blinking a geture, not a bug
             Debug.Log("flashlightOn: " + toggleFlashlight);
         }
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             flashlightCharge -= flashlighDischargeRate * Time.deltaTime;
         } else if(flashlightCharge <=100)
         {
-            flashlightCharge += flashlighChargeRate * Time.deltaTime;
+            flashlightCharge += flashlighChargeRate * Time.deltaTime; //TODO charge only when moving?
         }
 
         Debug.Log("flashlightCharge: " + flashlightCharge);
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        crosshair.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);//TODO -3 is player z
+        crosshair.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
         transform.up = crosshair.position - transform.position;
 
     }
