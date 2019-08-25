@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 1283224872}
   - component: {fileID: 1283224871}
   m_Layer: 0
-  m_Name: mask
+  m_Name: light-mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,7 +679,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f08d6815568fc1642808519dbca7804d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 790f0e0d22ce2c94d823d1602d57dc31, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -697,8 +697,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283224870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.07, z: 50.67}
-  m_LocalScale: {x: 1.842883, y: 1.3062876, z: 0.68892825}
+  m_LocalPosition: {x: 0.01, y: 1.44, z: 50.67}
+  m_LocalScale: {x: 4.7524266, y: 5.3129997, z: 1.7766081}
   m_Children: []
   m_Father: {fileID: 651117663}
   m_RootOrder: 0
