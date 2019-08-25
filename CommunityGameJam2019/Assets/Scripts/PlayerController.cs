@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private SpriteRenderer sr;
+    private SpriteRenderer sr; //TODO flip sprite on mov.x<0
     private Collider2D playerCollider;
     private Transform flashlight;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     public GameObject flashlightCone;
     public Transform crosshair;
 
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         flashlight = transform.GetChild(0);
 
@@ -42,8 +44,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            toggleFlashlight = !toggleFlashlight; //TODO make blinking a geture, not a bug
-            Debug.Log("flashlightOn: " + toggleFlashlight);
+            toggleFlashlight = !toggleFlashlight; //TODO make blinking a feature, not a bug
+            audioSource.Play();
+            //Debug.Log("flashlightOn: " + toggleFlashlight); TODO remove
         }
 
         if (toggleFlashlight && flashlightCharge >= 0)
@@ -54,7 +57,7 @@ public class PlayerController : MonoBehaviour
             flashlightCharge += flashlighChargeRate * Time.deltaTime; //TODO charge only when moving?
         }
 
-        Debug.Log("flashlightCharge: " + flashlightCharge);
+        //Debug.Log("flashlightCharge: " + flashlightCharge); TODO remove
 
         flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
      
@@ -72,13 +75,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("entrei");
+        Debug.Log("player collided with: " + col.gameObject.tag);
         if(col.gameObject.tag == "Enemy")
         {
             Destroy(transform.gameObject);
-            menuContainer.SetActive(true);
+            //menuContainer.SetActive(true);
         }
     }
 
