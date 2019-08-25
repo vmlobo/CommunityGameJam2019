@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Transform flashlight;
     private Rigidbody2D rb;
     public GameObject flashlightCone;
+    public Transform crosshair;
 
     private bool toggleFlashlight;
     private float flashlightCharge;
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("flashlightCharge: " + flashlightCharge);
 
         flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
-        
+     
     }
 
     private void FixedUpdate()
@@ -64,8 +65,8 @@ public class PlayerController : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        transform.up = new Vector3(mousePos.x, mousePos.y, 0);
+        crosshair.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);//TODO -3 is player z
+        transform.up = crosshair.position - transform.position;
 
     }
 
