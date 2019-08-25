@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
 
+    public GameObject menuContainer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,16 @@ public class PlayerController : MonoBehaviour
         crosshair.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
         transform.up = crosshair.position - transform.position;
 
+    }
+
+    void OnCollisionEnter2D(Collision col)
+    {
+        Debug.Log("entrei");
+        if(col.gameObject.tag == "Enemy")
+        {
+            Destroy(transform.gameObject);
+            menuContainer.SetActive(true);
+        }
     }
 
 }
