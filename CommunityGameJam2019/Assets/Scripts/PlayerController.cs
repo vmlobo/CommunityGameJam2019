@@ -9,8 +9,13 @@ public class PlayerController : MonoBehaviour
     private Collider2D playerCollider;
     private Transform flashlight;
     private Rigidbody2D rb;
+    public GameObject flashlightCone;
 
     private bool toggleFlashlight;
+    private float flashlightCharge;
+    public float flashlighDischargeRate;
+    public float flashlighChargeRate;
+
     public float speed;
 
 
@@ -25,13 +30,31 @@ public class PlayerController : MonoBehaviour
         flashlight = transform.GetChild(0);
 
         toggleFlashlight = false;
+        flashlightCharge = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            toggleFlashlight = !toggleFlashlight;
+            Debug.Log("flashlightOn: " + toggleFlashlight);
+        }
 
+        if (toggleFlashlight && flashlightCharge >= 0)
+        {
+            flashlightCharge -= flashlighDischargeRate * Time.deltaTime;
+        } else if(flashlightCharge <=100)
+        {
+            flashlightCharge += flashlighChargeRate * Time.deltaTime;
+        }
+
+        Debug.Log("flashlightCharge: " + flashlightCharge);
+
+        flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
+        
     }
 
     private void FixedUpdate()
