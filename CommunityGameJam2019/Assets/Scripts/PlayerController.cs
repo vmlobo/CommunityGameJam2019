@@ -65,12 +65,8 @@ public class PlayerController : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        transform.up = new Vector3(mousePos.x, mousePos.y, 0);
-
-       
-
-        crosshair.position = new Vector3(mousePos.x,mousePos.y,0);
+        crosshair.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);//TODO -3 is player z
+        transform.up = crosshair.position - transform.position;
 
     }
 
