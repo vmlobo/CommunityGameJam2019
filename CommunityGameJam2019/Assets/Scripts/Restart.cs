@@ -13,9 +13,8 @@ public class Restart : MonoBehaviour
 
     public void click()
     {
-        SceneManager.LoadScene("SceneAlvaro");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
     // Update is called once per frame
     void Update()
     {

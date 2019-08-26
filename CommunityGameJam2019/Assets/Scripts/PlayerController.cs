@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject menuContainer;
    
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -83,13 +81,26 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("player collided with: " + col.gameObject.tag);
+        //Debug.Log("player collided with: " + col.gameObject.tag);
         if(col.gameObject.tag == "Enemy")
         {
             transform.gameObject.SetActive(false);
             //Destroy(transform.gameObject);
             menuContainer.SetActive(true);
             Cursor.visible =true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(transform.gameObject.tag + " collided with: " + col.gameObject.tag);
+        if (col.gameObject.tag == "Hazard")
+        {
+            
+            transform.gameObject.SetActive(false);
+            //Destroy(transform.gameObject);
+            menuContainer.SetActive(true);
+            Cursor.visible = true;
         }
     }
 
