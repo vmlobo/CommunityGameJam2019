@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public GameObject menuContainer;
     public Image keyOverlay;
 
+    private bool blinking; //TODO
+
     private bool hasKey;
     private bool toggleFlashlight;
     private float flashlightCharge;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         toggleFlashlight = false;
         flashlightCharge = 100;
         hasKey = false;
+        //blinking = false; TODO 
     }
 
     // Update is called once per frame
@@ -60,12 +63,12 @@ public class PlayerController : MonoBehaviour
             flashlightCharge += flashlighChargeRate * Time.deltaTime; //TODO charge only when moving?
         }
 
-        //if (flashlightCharge <= 50) TODO Blinking
+        //if (flashlightCharge <= 25 && !blinking) 
         //{
-        //    StartCoroutine(Blink(flashlightCharge));
+        //    StartCoroutine(Blink(flashlightCharge)); //TODO
         //}
 
-        //Debug.Log("flashlightCharge: " + flashlightCharge); TODO remove
+        Debug.Log("flashlightCharge: " + flashlightCharge); //TODO remove
 
         flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
      
@@ -73,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += movement * Time.deltaTime * speed;
 
@@ -116,14 +119,17 @@ public class PlayerController : MonoBehaviour
         return hasKey;
     }
 
-    //IEnumerator Blink(float charge) TODO blinking
+    //IEnumerator Blink(float charge) 
     //{
-
-
-    //    yield return new WaitForSeconds();
-
-
-
+    //    blinking = true;
+    //    while (true && toggleFlashlight)
+    //    {
+    //        flashlightCone.SetActive(true);
+    //        yield return new WaitForSeconds(charge/10);
+    //        Debug.Log("blink speed: " + charge / 10);
+    //        flashlightCone.SetActive(false);
+    //    }
+    //    blinking = false;
     //}
 
 }

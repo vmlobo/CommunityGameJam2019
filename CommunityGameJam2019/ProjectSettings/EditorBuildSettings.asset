@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/AlvaroLvl2.unity
-    guid: 4c174c02b3d75b2448adbd4b44a87a74
+  - enabled: 1
+    path: Assets/Scenes/Niveis/Level1.unity
+    guid: e85cb51dd5a5eda4fba15467f066bc43
   - enabled: 1
     path: Assets/Scenes/lvl2.unity
     guid: 679bc944ef90a4140a261bb6feec33c2
