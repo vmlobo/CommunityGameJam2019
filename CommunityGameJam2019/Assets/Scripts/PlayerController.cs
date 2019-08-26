@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 
-    private SpriteRenderer sr; //TODO flip sprite on mov.x<0
+    private SpriteRenderer sr; 
     private Collider2D playerCollider;
     private Transform flashlight;
     private Rigidbody2D rb;
@@ -13,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public GameObject flashlightCone;
     public Transform crosshair;
 
+    public GameObject menuContainer;
+    public Image keyOverlay;
+
+    private bool hasKey;
     private bool toggleFlashlight;
     private float flashlightCharge;
     public float flashlighDischargeRate;
@@ -20,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
 
-    public GameObject menuContainer;
    
     // Start is called before the first frame update
     void Start()
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
         toggleFlashlight = false;
         flashlightCharge = 100;
+        hasKey = false;
     }
 
     // Update is called once per frame
@@ -45,7 +50,6 @@ public class PlayerController : MonoBehaviour
         {
             toggleFlashlight = !toggleFlashlight; //TODO make blinking a feature, not a bug
             audioSource.Play();
-            //Debug.Log("flashlightOn: " + toggleFlashlight); TODO remove
         }
 
         if (toggleFlashlight && flashlightCharge >= 0)
@@ -79,13 +83,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col) //TODO enemies go through hazards
     {
-        //Debug.Log("player collided with: " + col.gameObject.tag);
         if(col.gameObject.tag == "Enemy")
         {
             transform.gameObject.SetActive(false);
-            //Destroy(transform.gameObject);
             menuContainer.SetActive(true);
             Cursor.visible =true;
         }
@@ -93,14 +95,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(transform.gameObject.tag + " collided with: " + col.gameObject.tag);
+        Debug.Log(transform.gameObject.tag + " collided with trigger: " + col.gameObject.tag);
         if (col.gameObject.tag == "Hazard")
         {
-            
             transform.gameObject.SetActive(false);
-            //Destroy(transform.gameObject);
             menuContainer.SetActive(true);
             Cursor.visible = true;
+        }
+        if(col.gameObject.tag == "Key")
+        {
+            hasKey = true;
+            col.gameObject.SetActive(false);
+            keyOverlay.color = new Color(255, 255, 255, 255);
+            
         }
     }
 

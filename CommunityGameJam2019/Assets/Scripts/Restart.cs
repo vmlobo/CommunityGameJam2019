@@ -16,8 +16,5 @@ public class Restart : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
