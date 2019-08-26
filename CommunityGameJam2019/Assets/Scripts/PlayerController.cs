@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     public GameObject menuContainer;
+   
 
 
     // Start is called before the first frame update
@@ -80,8 +81,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("player collided with: " + col.gameObject.tag);
         if(col.gameObject.tag == "Enemy")
         {
-            Destroy(transform.gameObject);
-            //menuContainer.SetActive(true);
+            transform.gameObject.SetActive(false);
+            //Destroy(transform.gameObject);
+            menuContainer.SetActive(true);
+            Cursor.visible =true;
         }
     }
 
