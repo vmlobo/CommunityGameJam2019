@@ -58,6 +58,11 @@ public class PlayerController : MonoBehaviour
             flashlightCharge += flashlighChargeRate * Time.deltaTime; //TODO charge only when moving?
         }
 
+        //if (flashlightCharge <= 50) TODO Blinking
+        //{
+        //    StartCoroutine(Blink(flashlightCharge));
+        //}
+
         //Debug.Log("flashlightCharge: " + flashlightCharge); TODO remove
 
         flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
@@ -87,5 +92,15 @@ public class PlayerController : MonoBehaviour
             Cursor.visible =true;
         }
     }
+
+    //IEnumerator Blink(float charge) TODO blinking
+    //{
+
+
+    //    yield return new WaitForSeconds();
+
+
+
+    //}
 
 }
