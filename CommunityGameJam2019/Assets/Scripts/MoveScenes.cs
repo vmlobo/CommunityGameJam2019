@@ -11,7 +11,11 @@ public class MoveScenes : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(newLevel);
+            if (other.GetComponent<PlayerController>().hasKeyBool())
+            {
+                SceneManager.LoadScene(newLevel);
+            }
+            else Debug.Log("needs key"); //TODO TEXTO A PEDIR A CHAVENA
         }
     }
 }

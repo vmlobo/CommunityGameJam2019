@@ -111,6 +111,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool hasKeyBool()
+    {
+        return hasKey;
+    }
+
     //IEnumerator Blink(float charge) TODO blinking
     //{
 
