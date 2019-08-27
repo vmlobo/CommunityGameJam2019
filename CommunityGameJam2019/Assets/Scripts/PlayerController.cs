@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject menuContainer;
     public Image keyOverlay;
+    public Image batteryUI;
 
     private bool blinking; //TODO
 
@@ -68,10 +69,12 @@ public class PlayerController : MonoBehaviour
         //    StartCoroutine(Blink(flashlightCharge)); //TODO
         //}
 
-        Debug.Log("flashlightCharge: " + flashlightCharge); //TODO remove
+        //Debug.Log("flashlightCharge: " + flashlightCharge); //TODO remove
+        //Debug.Log("flashlightCharge lerped: " + Mathf.Lerp(0, 1, Mathf.InverseLerp(0, 100, flashlightCharge))); //TODO remove
 
         flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
-     
+        batteryUI.fillAmount = Mathf.Lerp(0, 1, Mathf.InverseLerp(0, 100, flashlightCharge));
+
     }
 
     private void FixedUpdate()
