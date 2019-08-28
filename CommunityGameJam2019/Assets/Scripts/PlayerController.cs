@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             flashlightCharge -= flashlighDischargeRate * Time.deltaTime;
         } else if(flashlightCharge <=100)
         {
-            flashlightCharge += flashlighChargeRate * Time.deltaTime; //TODO charge only when moving?
+            flashlightCharge += flashlighChargeRate * Time.deltaTime; 
         }
 
         //if (flashlightCharge <= 25 && !blinking) 
@@ -69,10 +69,13 @@ public class PlayerController : MonoBehaviour
         //    StartCoroutine(Blink(flashlightCharge)); //TODO
         //}
 
-        //Debug.Log("flashlightCharge: " + flashlightCharge); //TODO remove
-        //Debug.Log("flashlightCharge lerped: " + Mathf.Lerp(0, 1, Mathf.InverseLerp(0, 100, flashlightCharge))); //TODO remove
-
         flashlightCone.SetActive(toggleFlashlight && flashlightCharge >= 0); //TODO implement cooldown after charge depletion
+
+        //if (Mathf.Lerp(0, 1, Mathf.InverseLerp(0, 100, Mathf.Floor(flashlightCharge))) % 0.2f == 0) //TODO charge by blocks?
+        //{
+        //    batteryUI.fillAmount = Mathf.Lerp(0, 1, Mathf.InverseLerp(0, 100, flashlightCharge));
+        //}
+
         batteryUI.fillAmount = Mathf.Lerp(0, 1, Mathf.InverseLerp(0, 100, flashlightCharge));
 
     }
@@ -101,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(transform.gameObject.tag + " collided with trigger: " + col.gameObject.tag);
+        //Debug.Log(transform.gameObject.tag + " collided with trigger: " + col.gameObject.tag);
         if (col.gameObject.tag == "Hazard")
         {
             transform.gameObject.SetActive(false);
