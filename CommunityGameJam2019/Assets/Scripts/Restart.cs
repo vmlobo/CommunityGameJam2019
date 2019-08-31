@@ -10,11 +10,18 @@ public class Restart : MonoBehaviour
     {
         
     }
-
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(1);
+    }
     public void click()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    // Update is called once per frame
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
 }
